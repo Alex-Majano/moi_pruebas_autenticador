@@ -1,0 +1,1 @@
+Hay que crear la base de datos con las tablas del backup sql

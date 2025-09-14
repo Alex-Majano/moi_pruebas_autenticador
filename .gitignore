@@ -1,0 +1,9 @@
+﻿# Ignorar solo lo que no queremos subir
+node_modules/
+dist/
+build/
+.env
+.vscode/
+npm-debug.log
+yarn-error.log
+.DS_Store
