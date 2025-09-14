@@ -1,0 +1,23 @@
+.layout-main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    justify-content: space-between;
+    padding: 2rem 1rem 2rem 1rem;
+    transition: margin-left .2s;
+}
+
+.layout-main {
+    flex: 1 1 auto;
+}
+
+.layout-wrapper {
+    min-height: 100vh;
+}
+
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}

@@ -1,0 +1,71 @@
+@layer components {
+
+    .input-container {
+        @apply relative;
+
+        input {
+            @apply bg-white py-2 px-4 w-full font-medium text-center border border-gray-300 hover:border-custom-primary-500 rounded-lg focus:outline-none focus-visible:border-custom-primary-500 focus:ring-1 focus:ring-custom-primary-500;
+        }
+
+        i {
+            @apply absolute flex items-center left-1.5 top-2;
+        }
+
+        svg {
+            @apply absolute flex items-center right-1.5 top-3.5 cursor-pointer;
+        }
+
+
+        .invalid {
+            border: 1.5px solid;
+            @apply border-custom-error-500 rounded-lg;
+        }
+    }
+
+    .password-container {
+        @apply relative;
+
+        .password-input {
+            input {
+                @apply bg-white py-2 px-4 w-full font-medium text-center border border-gray-300 rounded-lg hover:border-custom-primary-500 focus:outline-none focus-visible:border-custom-primary-500 focus:ring-1 focus:ring-custom-primary-500
+            }
+        }
+
+        i {
+            @apply absolute flex items-center left-1.5 top-2.5;
+        }
+
+        svg {
+            @apply absolute flex items-center right-1.5 top-3.5 cursor-pointer;
+        }
+
+        .invalid {
+            border: 1.5px solid;
+            @apply border-custom-error-500 rounded-lg;
+        }
+
+    }
+
+    .input-select > div {
+        @apply relative bg-white w-full font-medium text-center border hover:border-custom-primary-500 rounded-lg  focus-visible:border-custom-primary-500 focus:ring-1 focus:ring-custom-primary-500;
+    }
+
+    .panel-select-input {
+        input {
+            @apply border hover:border-custom-primary-500 focus:ring-1 focus:ring-custom-primary-500
+        }
+
+        li {
+            @apply hover:text-custom-primary-500
+        }
+
+    }
+
+    .input-multiselect > div {
+        @apply relative bg-white w-full font-medium text-center border hover:border-custom-primary-500 rounded-lg  focus-visible:border-custom-primary-500 focus:ring-1 focus:ring-custom-primary-500;
+
+        .p-placeholder {
+            @apply flex justify-center text-gray-400
+        }
+    }
+}

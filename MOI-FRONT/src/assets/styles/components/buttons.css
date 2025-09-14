@@ -1,0 +1,42 @@
+@layer components {
+    .btn {
+        @apply rounded-md shadow py-2 px-4 w-full md:w-28 text-center cursor-pointer border-0 bg-gray-400
+    }
+
+    .btn-primary {
+        @apply bg-custom-primary-500 text-white hover:bg-custom-primary-700 focus:bg-custom-primary-700
+    }
+
+    .btn-success {
+        @apply bg-custom-success-500 text-white hover:bg-custom-success-700 focus:bg-custom-success-700
+    }
+
+    .btn-warning {
+        @apply bg-custom-warning-500 text-white hover:bg-custom-warning-700 focus:bg-custom-warning-700
+    }
+
+    .btn-error {
+        @apply bg-custom-error-500 text-white hover:bg-custom-error-700 focus:bg-custom-error-700
+    }
+
+    .btn-secondary {
+        @apply bg-custom-secondary-500 text-custom-primary-500 hover:bg-custom-primary-900 hover:text-white focus:border-custom-primary-900
+    }
+
+    /* buttons outline */
+    .btn-outline-primary {
+        @apply border border-custom-primary-500 text-custom-primary-500 hover:bg-custom-primary-500 focus:bg-custom-primary-500 hover:text-white
+    }
+
+    .btn-outline-success {
+        @apply border border-custom-success-500 text-custom-success-500 hover:bg-custom-success-500 focus:bg-custom-success-500 hover:text-white
+    }
+
+    .btn-outline-warning {
+        @apply border border-custom-warning-500 text-custom-warning-500 hover:bg-custom-warning-500 focus:bg-custom-warning-500 hover:text-white
+    }
+
+    .btn-outline-error {
+        @apply border border-custom-error-500 text-custom-error-500 hover:bg-custom-error-500 focus:bg-custom-error-500 hover:text-white
+    }
+}

@@ -1,0 +1,7 @@
+.layout-footer {
+    transition: margin-left .2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-content: end;
+}
