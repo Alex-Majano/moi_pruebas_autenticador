@@ -1,9 +1,14 @@
-﻿# Ignorar solo lo que no queremos subir
-node_modules/
+﻿# Build outputs
 dist/
 build/
+
+# Environment variables
 .env
+
+# Editor folders
 .vscode/
+
+# Logs
 npm-debug.log
 yarn-error.log
 .DS_Store
