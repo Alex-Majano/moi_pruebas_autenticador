@@ -62,6 +62,33 @@
                 </div>
               </div>
 
+              <!-- ✅ MODAL PARA SELECCIÓN DE SUBÁREA DE STOCK -->
+              <div v-if="showAreaModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white rounded-lg p-6 w-11/12 md:w-1/3 lg:w-1/4">
+                  <h3 class="text-lg font-bold mb-4">Seleccione subárea de stock</h3>
+                  <p class="mb-4">Bienvenido al Sistema MINSAL</p>
+                  
+                  <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Subárea de Stock:</label>
+                    <select v-model="selectedArea" class="w-full p-2 border rounded">
+                      <option value="">-- Seleccione una opción --</option>
+                      <option value="area_stock_central">Stock Central</option>
+                      <option value="area_stock_medicamentos">Stock de Medicamentos</option>
+                      <option value="area_stock_insumos">Stock de Insumos Médicos</option>
+                      <option value="area_stock_equipos">Stock de Equipos</option>
+                    </select>
+                  </div>
+
+                  <div class="flex justify-end gap-2">
+                    <button-component
+                      label="Continuar"
+                      class="btn btn-primary"
+                      @click="confirmAreaSelection"
+                    />
+                  </div>
+                </div>
+              </div>
+
               <div class="flex justify-center">
                 <button-component
                   label="Ingresar"
@@ -97,6 +124,10 @@ const show2FAModal = ref(false);
 const twoFACode = ref('');
 const userIdFor2FA = ref('');
 const emailFor2FA = ref('');
+
+// ✅ ESTADOS PARA MANEJAR SELECCIÓN DE ÁREA
+const showAreaModal = ref(false);
+const selectedArea = ref('');
 
 const schema = toTypedSchema(yup.object({
   email: yup.string().required('El correo electrónico es requerido')
@@ -136,15 +167,13 @@ const onSubmit = handleSubmit(async (values) => {
       userIdFor2FA.value = response.userId;
       emailFor2FA.value = response.email;
       
-      // Opcional: mostrar notificación
       console.log('Se requiere verificación de 2FA:', response.message);
     } else {
-      // Login exitoso sin 2FA - redirigir al home
-      await router.push({ name: 'home', replace: true });
+      // ✅ LOGIN EXITOSO SIN 2FA - MOSTRAR SELECTOR DE ÁREA
+      showAreaModal.value = true;
     }
   } catch (error) {
     console.error('Error en login:', error);
-    // Manejar errores de login aquí
   } finally {
     loaderPlugin.hide();
   }
@@ -164,15 +193,41 @@ const verify2FA = async () => {
       token: twoFACode.value
     });
     
-    // ✅ Verificación exitosa - redirigir al home
+    // ✅ Verificación exitosa - MOSTRAR SELECTOR DE ÁREA
     show2FAModal.value = false;
-    await router.push({ name: 'home', replace: true });
+    showAreaModal.value = true;
   } catch (error) {
     console.error('Error en verificación 2FA:', error);
-    // Manejar errores de verificación aquí
   } finally {
     loaderPlugin.hide();
   }
+};
+
+// ✅ MÉTODO PARA CONFIRMAR SELECCIÓN DE ÁREA
+const confirmAreaSelection = () => {
+  if (!selectedArea.value) {
+    alert('Por favor seleccione una subárea de trabajo');
+    return;
+  }
+
+  // ✅ Guardar en localStorage para demostración visual
+  localStorage.setItem('selectedArea', selectedArea.value);
+  localStorage.setItem('selectedAreaName', getAreaName(selectedArea.value));
+  
+  // ✅ Ocultar modal y redirigir al dashboard
+  showAreaModal.value = false;
+  router.push({ name: 'home', replace: true });
+};
+
+// ✅ FUNCIÓN PARA OBTENER NOMBRE BONITO DEL ÁREA
+const getAreaName = (areaKey) => {
+  const areas = {
+    'area_stock_central': 'Stock Central',
+    'area_stock_medicamentos': 'Stock de Medicamentos', 
+    'area_stock_insumos': 'Stock de Insumos Médicos',
+    'area_stock_equipos': 'Stock de Equipos'
+  };
+  return areas[areaKey] || 'Área no seleccionada';
 };
 </script>
 
@@ -185,7 +240,7 @@ const verify2FA = async () => {
   z-index: -1;
 }
 
-/* ✅ Estilos para el modal de 2FA */
+/* ✅ Estilos para los modales */
 .fixed {
   position: fixed;
 }
